@@ -1,0 +1,11 @@
+{
+  "commercialName": "Empresa",
+  "businessName": "Empresa LTDA",
+  "cnpj": "11111111111111",
+  "courses": [
+
+    {"code": "docker-e-docker-compose", "platform": "ONLINE"},
+    {"code": "FJ-11", "platform": "CLASSROOM"}
+  ]
+
+}

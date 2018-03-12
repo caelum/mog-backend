@@ -1,3 +1,4 @@
 .idea/
 mog-backend.iml
 target/
+.DS_Store
