@@ -1,18 +1,18 @@
 package br.com.caelum.mog.domains.models;
 
-import br.com.caelum.mog.rest.ClassroomCoursesClient;
-import br.com.caelum.mog.rest.CoursesClient;
-import br.com.caelum.mog.rest.OnlineCoursesClient;
+import br.com.caelum.mog.rest.ClassroomCoursesRestClient;
+import br.com.caelum.mog.rest.CoursesRestClient;
+import br.com.caelum.mog.rest.OnlineCoursesRestClient;
 
 public enum Platform {
-    CLASSROOM(new ClassroomCoursesClient(), "Presencial"),
-    ONLINE(new OnlineCoursesClient(), "Online");
+    CLASSROOM(new ClassroomCoursesRestClient(), "Presencial"),
+    ONLINE(new OnlineCoursesRestClient(), "Online");
 
 
-    private final CoursesClient client;
+    private final CoursesRestClient client;
     private String description;
 
-    Platform(CoursesClient client, String description){
+    Platform(CoursesRestClient client, String description){
         this.client = client;
         this.description = description;
     }
