@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Course {
 
-    private String title;
+    private String name;
     private String code;
     private List<CourseSummaryItem> summary = new ArrayList<>();
     private Platform platform;
@@ -17,8 +17,8 @@ public class Course {
     @Deprecated(since = "1.0.0")
     public Course() { }
 
-    public Course(String title, String code, Platform platform, CourseSummaryItem... items) {
-        this.title = title;
+    public Course(String name, String code, Platform platform, CourseSummaryItem... items) {
+        this.name = name;
         this.code = code;
         this.summary = List.of(items);
         this.platform = platform;
@@ -36,7 +36,7 @@ public class Course {
         return platform;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 }
