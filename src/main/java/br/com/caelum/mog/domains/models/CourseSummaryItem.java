@@ -26,4 +26,12 @@ public class CourseSummaryItem {
     public List<String> getContents() {
         return contents;
     }
+
+    @Override
+    public String toString() {
+        return "CourseSummaryItem{" +
+                "title='" + title + '\'' +
+                ", contents=" + contents +
+                '}';
+    }
 }

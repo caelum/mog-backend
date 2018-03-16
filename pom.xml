@@ -39,18 +39,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!-- ODT -->
         <!-- https://mvnrepository.com/artifact/net.sf.jodreports/jodreports -->
         <dependency>

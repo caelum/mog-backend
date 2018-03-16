@@ -14,13 +14,14 @@ public class ClassroomCoursesRestClient implements CoursesRestClient {
     @Override
     public Course getCourseByCode(String code) {
 
-        return new Course("FJ-11", Platform.CLASSROOM,    new CourseSummaryItem("Como aprender java", "O que é realmente importante?", "Sobre os exercícios", "Tirando Dúvida"),
-                                                                new CourseSummaryItem("O que é o java", "Java", "Uma breve histório do java", "Maquina virtual"));
+        return new Course("Java e orientação a objetos","FJ-11", Platform.CLASSROOM,
+                                        new CourseSummaryItem("Como aprender java", "O que é realmente importante?", "Sobre os exercícios", "Tirando Dúvida"),
+                                        new CourseSummaryItem("O que é o java", "Java", "Uma breve histório do java", "Maquina virtual"));
     }
 
     public List<CourseDTO> getAllSimplesCourse() {
         return List.of("FJ-21").stream()
-                .map(code -> new CourseDTO(code, Platform.CLASSROOM))
+                .map(code -> new CourseDTO("Java e orientação a objetos", code, Platform.CLASSROOM))
                 .collect(Collectors.toList());
     }
 }

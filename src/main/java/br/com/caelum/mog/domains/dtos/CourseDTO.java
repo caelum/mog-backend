@@ -5,6 +5,7 @@ import br.com.caelum.mog.domains.models.Platform;
 import br.com.caelum.mog.services.CoursesService;
 
 public class CourseDTO {
+    private String name;
     private String code;
     private Platform platform;
 
@@ -14,9 +15,14 @@ public class CourseDTO {
     @Deprecated(since = "1.0.0")
     private CourseDTO() { }
 
-    public CourseDTO(String code, Platform platform) {
+    public CourseDTO(String name, String code, Platform platform) {
+        this.name = name;
         this.code = code;
         this.platform = platform;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getCode() {
