@@ -2,3 +2,6 @@
 mog-backend.iml
 target/
 .DS_Store
+.classpath
+.project
+.settings/
