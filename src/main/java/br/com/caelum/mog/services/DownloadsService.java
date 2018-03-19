@@ -1,9 +1,9 @@
 package br.com.caelum.mog.services;
 
+import org.springframework.stereotype.Service;
+
 import br.com.caelum.mog.adapters.Downloadable;
 import br.com.caelum.mog.domains.models.Offer;
-import br.com.caelum.mog.exceptions.OfferODTException;
-import org.springframework.stereotype.Service;
 
 @Service
 public class DownloadsService {
