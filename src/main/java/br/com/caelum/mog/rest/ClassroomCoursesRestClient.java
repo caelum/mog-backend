@@ -14,7 +14,7 @@ public class ClassroomCoursesRestClient implements CoursesRestClient {
     @Override
     public Course getCourseByCode(String code) {
 
-        return new Course("Java e orientação a objetos","FJ-11", Platform.CLASSROOM,
+        return new Course("Java e orientação a objetos","FJ-11", 40,
                                         new CourseSummaryItem("Como aprender java", "O que é realmente importante?", "Sobre os exercícios", "Tirando Dúvida"),
                                         new CourseSummaryItem("O que é o java", "Java", "Uma breve histório do java", "Maquina virtual"));
     }
