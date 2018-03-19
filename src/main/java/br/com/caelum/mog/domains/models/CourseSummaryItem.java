@@ -3,9 +3,13 @@ package br.com.caelum.mog.domains.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseSummaryItem {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class CourseSummaryItem {
+	@JsonProperty("capitulo")
     private String title;
+	
+	@JsonProperty("secoes")
     private List<String> contents = new ArrayList<>();
 
     /**

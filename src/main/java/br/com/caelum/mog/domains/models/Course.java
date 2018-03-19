@@ -3,12 +3,21 @@ package br.com.caelum.mog.domains.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Course {
 
+	@JsonProperty("nome")
     private String name;
+	
+	@JsonProperty("slug")
     private String code;
+	
+	@JsonProperty("ementa")
     private List<CourseSummaryItem> summary = new ArrayList<>();
-    private Platform platform;
+
+	@JsonProperty("carga_horaria")
+	private Integer workload;
 
 
     /**
@@ -17,11 +26,11 @@ public class Course {
     @Deprecated(since = "1.0.0")
     public Course() { }
 
-    public Course(String name, String code, Platform platform, CourseSummaryItem... items) {
+    public Course(String name, String code, Integer workload , CourseSummaryItem... items) {
         this.name = name;
         this.code = code;
+        this.workload = workload;
         this.summary = List.of(items);
-        this.platform = platform;
     }
 
     public String getCode() {
@@ -32,11 +41,11 @@ public class Course {
         return summary;
     }
 
-    public Platform getPlatform() {
-        return platform;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public Integer getWorkload() {
+        return workload;
     }
 }
