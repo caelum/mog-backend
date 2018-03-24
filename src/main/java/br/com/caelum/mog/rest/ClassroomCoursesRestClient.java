@@ -4,24 +4,43 @@ import br.com.caelum.mog.domains.dtos.CourseDTO;
 import br.com.caelum.mog.domains.models.Course;
 import br.com.caelum.mog.domains.models.CourseSummaryItem;
 import br.com.caelum.mog.domains.models.Platform;
+import br.com.caelum.mog.rest.representations.CourseRepresentation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class ClassroomCoursesRestClient implements CoursesRestClient {
+
+
+    private final String classroomAllCoursesURL;
+    private final String classroomSingleCourseURL;
+    private final RestTemplate restTemplate;
+
+    public ClassroomCoursesRestClient(@Value("${mog.classroom.all-courses.url}") String classroomAllCoursesURL,
+                                      @Value("${mog.classroom.single-courses.url}") String classroomSingleCourseURL,
+                                      RestTemplate restTemplate) {
+        this.classroomAllCoursesURL = classroomAllCoursesURL;
+        this.classroomSingleCourseURL = classroomSingleCourseURL;
+        this.restTemplate = restTemplate;
+    }
+
     @Override
     public Course getCourseByCode(String code) {
-
-        return new Course("Java e orientação a objetos","FJ-11", 40,
-                                        new CourseSummaryItem("Como aprender java", "O que é realmente importante?", "Sobre os exercícios", "Tirando Dúvida"),
-                                        new CourseSummaryItem("O que é o java", "Java", "Uma breve histório do java", "Maquina virtual"));
+        return restTemplate.getForObject(classroomSingleCourseURL, Course.class, code);
     }
 
     public List<CourseDTO> getAllSimplesCourse() {
-        return List.of("FJ-21").stream()
-                .map(code -> new CourseDTO("Java e orientação a objetos", code, Platform.CLASSROOM))
-                .collect(Collectors.toList());
+        CourseRepresentation[] courses = restTemplate.getForObject(classroomAllCoursesURL, CourseRepresentation[].class);
+
+        return Stream.of(courses).map(this::toClassroomCourseDTO).collect(Collectors.toList());
+    }
+
+    private CourseDTO toClassroomCourseDTO(CourseRepresentation representation) {
+        return representation.toCourseDTO(Platform.CLASSROOM);
     }
 }

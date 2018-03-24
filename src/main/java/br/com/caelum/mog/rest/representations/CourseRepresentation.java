@@ -4,9 +4,9 @@ import br.com.caelum.mog.domains.dtos.CourseDTO;
 import br.com.caelum.mog.domains.models.Platform;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OnlineCourseRepresentation implements UnitCourseRepresentation {
+public class CourseRepresentation {
 
-    @JsonProperty("slug")
+   @JsonProperty("slug")
     private String code;
 
     @JsonProperty("nome")
@@ -16,9 +16,9 @@ public class OnlineCourseRepresentation implements UnitCourseRepresentation {
      * @deprecated frameworks only
      */
     @Deprecated(since = "1.0.0")
-    public OnlineCourseRepresentation() {}
+    public CourseRepresentation() {}
 
-    public OnlineCourseRepresentation(String code, String name) {
+    public CourseRepresentation(String code, String name) {
         this.code = code;
         this.name = name;
     }
@@ -31,7 +31,7 @@ public class OnlineCourseRepresentation implements UnitCourseRepresentation {
         return name;
     }
 
-    public CourseDTO toCourseDTO(){
-        return new CourseDTO(name, code, Platform.ONLINE);
+    public CourseDTO toCourseDTO(Platform platform){
+        return new CourseDTO(name, code, platform);
     }
 }

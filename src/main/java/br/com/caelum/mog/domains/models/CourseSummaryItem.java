@@ -1,13 +1,13 @@
 package br.com.caelum.mog.domains.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class CourseSummaryItem {
-	@JsonProperty("capitulo")
-    private String title;
+	@JsonProperty(value = "capitulo")
+    private String title = "Avisar O Teteu para mudar o nome da property 'nome'->'capitulo'";
 	
 	@JsonProperty("secoes")
     private List<String> contents = new ArrayList<>();
@@ -31,11 +31,4 @@ public class CourseSummaryItem {
         return contents;
     }
 
-    @Override
-    public String toString() {
-        return "CourseSummaryItem{" +
-                "title='" + title + '\'' +
-                ", contents=" + contents +
-                '}';
-    }
 }

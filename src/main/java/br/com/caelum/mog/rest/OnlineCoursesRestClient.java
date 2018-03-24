@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import br.com.caelum.mog.domains.models.Platform;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.caelum.mog.domains.dtos.CourseDTO;
 import br.com.caelum.mog.domains.models.Course;
-import br.com.caelum.mog.rest.representations.OnlineCourseRepresentation;
+import br.com.caelum.mog.rest.representations.CourseRepresentation;
 
 @Component
 public class OnlineCoursesRestClient implements CoursesRestClient {
@@ -20,7 +21,7 @@ public class OnlineCoursesRestClient implements CoursesRestClient {
     private final RestTemplate restTemplate;
 	private String onlineSingleCourseURL;
 
-    public OnlineCoursesRestClient(	@Value("${mog.online.all-courses.url}") String onlineAllCoursesURL,
+    public OnlineCoursesRestClient(	    @Value("${mog.online.all-courses.url}") String onlineAllCoursesURL,
     									@Value("${mog.online.single-courses.url}") String onlineSingleCourseURL,
     									RestTemplate restTemplate) {
         this.onlineAllCoursesURL = onlineAllCoursesURL;
@@ -35,10 +36,11 @@ public class OnlineCoursesRestClient implements CoursesRestClient {
 
     @Override
     public List<CourseDTO> getAllSimplesCourse() {
+        CourseRepresentation[] courses = restTemplate.getForObject(onlineAllCoursesURL, CourseRepresentation[].class);
+        return Stream.of(courses).map(this::toOnlineCourseDTO).collect(Collectors.toList());
+    }
 
-        OnlineCourseRepresentation[] courses = restTemplate.getForObject(onlineAllCoursesURL, OnlineCourseRepresentation[].class);
-
-        return Stream.of(courses).map(OnlineCourseRepresentation::toCourseDTO).collect(Collectors.toList());
-
+    private CourseDTO toOnlineCourseDTO(CourseRepresentation representation){
+        return representation.toCourseDTO(Platform.ONLINE);
     }
 }
