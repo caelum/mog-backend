@@ -8,6 +8,7 @@ import net.sf.jooreports.templates.DocumentTemplate;
 import net.sf.jooreports.templates.DocumentTemplateException;
 import net.sf.jooreports.templates.DocumentTemplateFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,6 +28,8 @@ public class ODTFactory {
     }
 
     public Downloadable create(Offer offer) {
+
+        Assert.notNull(offer, "Offer required");
 
         Supplier<String> lazinessFilename = () -> offer.getCustomer().getCommercialName()
                                                     + "-"
