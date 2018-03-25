@@ -3,6 +3,7 @@ package br.com.caelum.mog.rest.representations;
 import br.com.caelum.mog.domains.dtos.CourseDTO;
 import br.com.caelum.mog.domains.models.Platform;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.util.Assert;
 
 public class CourseRepresentation {
 
@@ -16,9 +17,12 @@ public class CourseRepresentation {
      * @deprecated frameworks only
      */
     @Deprecated(since = "1.0.0")
-    public CourseRepresentation() {}
+    private CourseRepresentation() {}
 
     public CourseRepresentation(String code, String name) {
+        Assert.hasText(code, "Code required");
+        Assert.hasText(name, "Name required");
+
         this.code = code;
         this.name = name;
     }
