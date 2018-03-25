@@ -2,7 +2,9 @@ package br.com.caelum.mog.adapters;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class Downloadable extends HttpEntity<byte[]> {
@@ -14,6 +16,9 @@ public class Downloadable extends HttpEntity<byte[]> {
     }
 
     private Downloadable(byte[] bytes, String filename) {
+
+        Assert.notEmpty(List.of(bytes), "Bytes required");
+        Assert.hasText(filename, "Filename required");
 
         HttpHeaders headers = new HttpHeaders();
 
