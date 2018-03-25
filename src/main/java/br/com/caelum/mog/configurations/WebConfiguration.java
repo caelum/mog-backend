@@ -11,12 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WebConfiguration extends WebMvcConfigurerAdapter{
 
 
-    @Value("mog.cors.origins")
+    @Value("${mog.cors.origins}")
     private String origins;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*");
+        registry.addMapping("/**").allowedOrigins(origins);
     }
 
 
