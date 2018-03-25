@@ -1,5 +1,7 @@
 package br.com.caelum.mog.domains.models;
 
+import org.springframework.util.Assert;
+
 public class Customer {
     private String commercialName;
 
@@ -10,6 +12,8 @@ public class Customer {
     private Customer() { }
 
     public Customer(String commercialName) {
+        Assert.hasText(commercialName, "Commercial name required");
+
         this.commercialName = commercialName;
     }
 

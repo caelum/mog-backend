@@ -1,6 +1,7 @@
 package br.com.caelum.mog.domains.models;
 
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +12,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class Offer {
-    private String id;
 
     private Customer customer;
 
@@ -26,13 +26,13 @@ public class Offer {
     private Offer() { }
 
     public Offer(Customer customer, List<Course> courses, LocalDate date){
+        Assert.notNull(customer, "Customer required");
+        Assert.notEmpty(courses, "Courses required");
+        Assert.notNull(date, "Date required");
+
         this.customer = customer;
         this.courses = courses;
         this.date = date;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Customer getCustomer() {

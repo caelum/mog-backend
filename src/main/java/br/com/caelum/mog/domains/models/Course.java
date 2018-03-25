@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.util.Assert;
 
 public class Course {
 
@@ -27,6 +28,13 @@ public class Course {
     private Course() { }
 
     public Course(String name, String code, Integer workload , CourseSummaryItem... items) {
+        Assert.hasText(name, "Name required");
+        Assert.hasText(code, "Code required");
+        Assert.notNull(workload, "Workload required");
+        Assert.isTrue(workload > 0, "Workload must be positive");
+        Assert.notEmpty(items, "Items required");
+        Assert.noNullElements(items, "items required");
+
         this.name = name;
         this.code = code;
         this.workload = workload;
