@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.caelum.mog.adapters.Downloadable;
 import br.com.caelum.mog.domains.models.Offer;
+import org.springframework.util.Assert;
 
 @Service
 public class DownloadsService {
@@ -15,6 +16,7 @@ public class DownloadsService {
     }
 
     public Downloadable getDowloadableOffer(Offer offer) {
+        Assert.notNull(offer, "Offer required");
         return service.toODT(offer);
     }
 }

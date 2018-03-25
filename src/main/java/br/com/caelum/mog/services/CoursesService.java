@@ -7,6 +7,7 @@ import br.com.caelum.mog.domains.models.Platform;
 import br.com.caelum.mog.rest.ClassroomCoursesRestClient;
 import br.com.caelum.mog.rest.CoursesRestClient;
 import br.com.caelum.mog.rest.OnlineCoursesRestClient;
+import org.springframework.util.Assert;
 
 @Service
 public class CoursesService {
@@ -20,7 +21,10 @@ public class CoursesService {
 	}
 	
     public Course getCourseByCodeAndPlatform(String code, Platform platform) {
-    		return getClientByPlatform(platform).getCourseByCode(code);
+        Assert.hasText(code, "Code required");
+        Assert.notNull(platform, "Platform required");
+
+    	return getClientByPlatform(platform).getCourseByCode(code);
     }
 
     
