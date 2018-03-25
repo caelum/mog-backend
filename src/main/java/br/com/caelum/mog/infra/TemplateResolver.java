@@ -1,6 +1,7 @@
 package br.com.caelum.mog.infra;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.net.URISyntaxException;
 import java.util.Objects;
 
 @Component
+@Scope("singleton")
 public class TemplateResolver {
 
 
@@ -20,7 +22,8 @@ public class TemplateResolver {
 
     public File getCurrentTemplate() {
         try {
-            URI uri = Objects.requireNonNull(getClass().getClassLoader().getResource(templatePath)).toURI();
+            ClassLoader classLoader = getClass().getClassLoader();
+            URI uri = Objects.requireNonNull(classLoader.getResource(templatePath)).toURI();
             return new File(uri);
         } catch (URISyntaxException e) {
             throw new RuntimeException("Can't resolve template file" );
