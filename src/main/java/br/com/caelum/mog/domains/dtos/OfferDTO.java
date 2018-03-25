@@ -4,6 +4,7 @@ import br.com.caelum.mog.domains.models.Course;
 import br.com.caelum.mog.domains.models.Customer;
 import br.com.caelum.mog.domains.models.Offer;
 import br.com.caelum.mog.services.CoursesService;
+import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class OfferDTO {
     private OfferDTO() { }
 
     public OfferDTO(String commercialName, CourseDTO... courses) {
+        Assert.hasText(commercialName, "Commercial name required");
+        Assert.notEmpty(courses, "At least one course must be informed");
+
         this.commercialName = commercialName;
         this.courses = List.of(courses);
     }

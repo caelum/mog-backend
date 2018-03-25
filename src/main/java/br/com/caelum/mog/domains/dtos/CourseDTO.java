@@ -3,6 +3,7 @@ package br.com.caelum.mog.domains.dtos;
 import br.com.caelum.mog.domains.models.Course;
 import br.com.caelum.mog.domains.models.Platform;
 import br.com.caelum.mog.services.CoursesService;
+import org.springframework.util.Assert;
 
 public class CourseDTO {
     private String name;
@@ -16,6 +17,10 @@ public class CourseDTO {
     private CourseDTO() { }
 
     public CourseDTO(String name, String code, Platform platform) {
+        Assert.hasText(name, "Name required");
+        Assert.hasText(code, "Code required");
+        Assert.notNull(platform, "Platform required");
+
         this.name = name;
         this.code = code;
         this.platform = platform;
