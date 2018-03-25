@@ -24,7 +24,7 @@ public class Course {
      * @deprecated frameworks only
      */
     @Deprecated(since = "1.0.0")
-    public Course() { }
+    private Course() { }
 
     public Course(String name, String code, Integer workload , CourseSummaryItem... items) {
         this.name = name;
