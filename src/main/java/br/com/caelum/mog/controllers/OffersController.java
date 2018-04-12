@@ -1,5 +1,6 @@
 package br.com.caelum.mog.controllers;
 
+import br.com.caelum.mog.adapters.Downloadable;
 import br.com.caelum.mog.domains.dtos.OfferDTO;
 import br.com.caelum.mog.domains.models.Offer;
 import br.com.caelum.mog.services.CoursesService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.Callable;
 
 @RestController
 @RequestMapping("offers")
@@ -24,9 +27,11 @@ public class OffersController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> save(@RequestBody OfferDTO dto){
-        Offer offer = dto.toOffer(courseService);
-        return downloadsService.getDowloadableOffer(offer);
+    public Callable<Downloadable> save(@RequestBody OfferDTO dto){
+        return () -> {
+            Offer offer = dto.toOffer(courseService);
+            return downloadsService.getDowloadableOffer(offer);
+        };
     }
 
 }

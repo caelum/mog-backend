@@ -21,10 +21,11 @@ import java.util.function.Supplier;
 public class ODTFactory {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_hhmm");
-    private InputStream templateFile;
+    private final TemplateResolver resolver;
 
     public ODTFactory(TemplateResolver resolver) {
-        this.templateFile = resolver.getCurrentTemplate();
+
+        this.resolver = resolver;
     }
 
     public Downloadable create(Offer offer) {
@@ -36,6 +37,8 @@ public class ODTFactory {
                                                     + LocalDateTime.now().format(formatter) + ".odt";
         try {
             DocumentTemplateFactory templateFactory = new DocumentTemplateFactory();
+
+            InputStream templateFile = resolver.getCurrentTemplate();
 
             DocumentTemplate template = templateFactory.getTemplate(templateFile);
 
