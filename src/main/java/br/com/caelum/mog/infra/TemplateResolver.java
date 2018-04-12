@@ -2,9 +2,13 @@ package br.com.caelum.mog.infra;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Objects;
@@ -20,13 +24,13 @@ public class TemplateResolver {
         templatePath = path;
     }
 
-    public File getCurrentTemplate() {
+    public InputStream getCurrentTemplate() {
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            URI uri = Objects.requireNonNull(classLoader.getResource(templatePath)).toURI();
-            return new File(uri);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("Can't resolve template file" );
+            ClassPathResource classPathResource = new ClassPathResource(templatePath);
+
+            return classPathResource.getInputStream();
+        } catch (IOException e) {
+            throw new RuntimeException("Can't resolve template file", e);
         }
     }
 }
