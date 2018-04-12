@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CourseSummaryItem {
 	@JsonProperty(value = "capitulo")
-    private String title = "Avisar O Teteu para mudar o nome da property 'nome'->'capitulo'";
+    private String title;
 	
 	@JsonProperty("secoes")
     private List<String> contents = new ArrayList<>();
