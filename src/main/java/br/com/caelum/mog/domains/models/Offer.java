@@ -4,8 +4,6 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.Locale;
 public class Offer {
 
     private Customer customer;
-
+    private Responsible responsible;
     private List<Course> courses =  new ArrayList<>();
     private LocalDate date;
 
@@ -25,7 +23,7 @@ public class Offer {
     @Deprecated(since = "1.0.0")
     private Offer() { }
 
-    public Offer(Customer customer, List<Course> courses, LocalDate date){
+    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible){
         Assert.notNull(customer, "Customer required");
         Assert.notEmpty(courses, "Courses required");
         Assert.notNull(date, "Date required");
@@ -33,6 +31,7 @@ public class Offer {
         this.customer = customer;
         this.courses = courses;
         this.date = date;
+        this.responsible = responsible;
     }
 
     public Customer getCustomer() {
@@ -55,5 +54,9 @@ public class Offer {
         int year = date.getYear();
 
         return String.format(locale, "%s de %s de %s", day, month, year);
+    }
+
+    public Responsible getResponsible() {
+        return responsible;
     }
 }
