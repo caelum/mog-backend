@@ -6,6 +6,7 @@ import br.com.caelum.mog.domains.models.Customer;
 import br.com.caelum.mog.domains.models.Offer;
 import br.com.caelum.mog.domains.models.CaelumInfo;
 import br.com.caelum.mog.domains.models.Responsible;
+import br.com.caelum.mog.domains.models.CourseSummaryItem;
 import br.com.caelum.mog.enums.CaelumDistrict;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
