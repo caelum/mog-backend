@@ -13,6 +13,7 @@ public class Offer {
 
     private Customer customer;
     private Responsible responsible;
+    private CaelumInfo caelumInfo;
     private List<Course> courses =  new ArrayList<>();
     private LocalDate date;
 
@@ -23,7 +24,7 @@ public class Offer {
     @Deprecated(since = "1.0.0")
     private Offer() { }
 
-    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible){
+    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible, CaelumInfo caelumInfo){
         Assert.notNull(customer, "Customer required");
         Assert.notEmpty(courses, "Courses required");
         Assert.notNull(date, "Date required");
@@ -32,6 +33,7 @@ public class Offer {
         this.courses = courses;
         this.date = date;
         this.responsible = responsible;
+        this.caelumInfo = caelumInfo;
     }
 
     public Customer getCustomer() {
@@ -44,6 +46,10 @@ public class Offer {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public CaelumInfo getCaelumInfo() {
+        return caelumInfo;
     }
 
     public String getFormattedDate(){
