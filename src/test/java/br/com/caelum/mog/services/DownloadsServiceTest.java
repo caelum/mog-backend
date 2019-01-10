@@ -1,7 +1,12 @@
 package br.com.caelum.mog.services;
 
 import br.com.caelum.mog.adapters.Downloadable;
-import br.com.caelum.mog.domains.models.*;
+import br.com.caelum.mog.domains.models.Course;
+import br.com.caelum.mog.domains.models.Customer;
+import br.com.caelum.mog.domains.models.Offer;
+import br.com.caelum.mog.domains.models.CaelumInfo;
+import br.com.caelum.mog.domains.models.Responsible;
+import br.com.caelum.mog.enums.CaelumDistrict;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +44,10 @@ class DownloadsServiceTest {
 
         Responsible responsible = new Responsible("Bianca Cavalcante");
 
-        Offer offer = new Offer(customer, courses, LocalDate.of(2018, Month.MARCH, 25), responsible);
+        CaelumDistrict district = CaelumDistrict.SP;
+        CaelumInfo caelumInfo = new CaelumInfo(district);
+
+        Offer offer = new Offer(customer, courses, LocalDate.of(2018, Month.MARCH, 25), responsible, caelumInfo);
 
         Downloadable downloadable = service.getDowloadableOffer(offer);
 
