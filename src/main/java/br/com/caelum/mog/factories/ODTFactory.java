@@ -9,6 +9,7 @@ import net.sf.jooreports.templates.DocumentTemplateException;
 import net.sf.jooreports.templates.DocumentTemplateFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.function.Supplier;
 
 @Component
+@RequestScope
 public class ODTFactory {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_hhmm");
