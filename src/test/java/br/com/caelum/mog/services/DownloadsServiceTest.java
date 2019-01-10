@@ -2,10 +2,12 @@ package br.com.caelum.mog.services;
 
 import br.com.caelum.mog.adapters.Downloadable;
 import br.com.caelum.mog.domains.models.Course;
-import br.com.caelum.mog.domains.models.CourseSummaryItem;
 import br.com.caelum.mog.domains.models.Customer;
 import br.com.caelum.mog.domains.models.Offer;
-import org.junit.Assert;
+import br.com.caelum.mog.domains.models.CaelumInfo;
+import br.com.caelum.mog.domains.models.Responsible;
+import br.com.caelum.mog.domains.models.CourseSummaryItem;
+import br.com.caelum.mog.enums.CaelumDistrict;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import java.time.Month;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -41,7 +43,12 @@ class DownloadsServiceTest {
                 new Course("Course Two", "two", 20, defaultSummary)
         );
 
-        Offer offer = new Offer(customer, courses, LocalDate.of(2018, Month.MARCH, 25));
+        Responsible responsible = new Responsible("Bianca Cavalcante");
+
+        CaelumDistrict district = CaelumDistrict.SP;
+        CaelumInfo caelumInfo = new CaelumInfo(district);
+
+        Offer offer = new Offer(customer, courses, LocalDate.of(2018, Month.MARCH, 25), responsible, caelumInfo);
 
         Downloadable downloadable = service.getDowloadableOffer(offer);
 
@@ -51,7 +58,6 @@ class DownloadsServiceTest {
                 () -> assertThat(downloadable.getHeaders().getContentDisposition().getType(), equalTo("attachment")),
                 () -> assertThat(downloadable.getHeaders().getContentDisposition().getFilename(), containsString("Caelum Treinamento"))
         );
-
 
     }
 
