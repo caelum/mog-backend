@@ -1,25 +1,27 @@
 package br.com.caelum.mog.domains.dtos;
 
-import br.com.caelum.mog.domains.models.Course;
-import br.com.caelum.mog.domains.models.Customer;
-import br.com.caelum.mog.domains.models.Offer;
-import br.com.caelum.mog.domains.models.CaelumInfo;
-import br.com.caelum.mog.domains.models.Responsible;
-import br.com.caelum.mog.enums.CaelumDistrict;
-import br.com.caelum.mog.services.CoursesService;
+import static org.springframework.util.Assert.hasText;
+import static org.springframework.util.Assert.notEmpty;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.springframework.util.Assert.hasText;
-import static org.springframework.util.Assert.notEmpty;
+import br.com.caelum.mog.domains.models.CaelumInfo;
+import br.com.caelum.mog.domains.models.CareOf;
+import br.com.caelum.mog.domains.models.Course;
+import br.com.caelum.mog.domains.models.Customer;
+import br.com.caelum.mog.domains.models.Offer;
+import br.com.caelum.mog.domains.models.Responsible;
+import br.com.caelum.mog.enums.CaelumDistrict;
+import br.com.caelum.mog.services.CoursesService;
 
 public class OfferDTO {
 
     private String commercialName;
     private String responsibleName;
+    private String careOfName;
     private String caelumDistrict;
     private List<CourseDTO> courses = new ArrayList<>();
 
@@ -29,7 +31,7 @@ public class OfferDTO {
     @Deprecated(since = "1.0.0")
     private OfferDTO() { }
 
-    public OfferDTO(String commercialName, String responsibleName, String caelumDistrict, CourseDTO... courses) {
+    public OfferDTO(String commercialName, String responsibleName, String careOfName, String caelumDistrict, CourseDTO... courses) {
         hasText(commercialName, "Commercial name required");
         notEmpty(courses, "At least one course must be informed");
         hasText(responsibleName, "Responsible name required");
@@ -38,6 +40,7 @@ public class OfferDTO {
         this.commercialName = commercialName;
         this.courses = List.of(courses);
         this.responsibleName = responsibleName;
+        this.careOfName = careOfName;
         this.caelumDistrict = caelumDistrict;
     }
 
@@ -57,6 +60,10 @@ public class OfferDTO {
         return caelumDistrict;
     }
 
+    public String getCareOfName() {
+		return careOfName;
+	}
+
     public Offer toOffer(CoursesService service) {
 
         List<Course> mappedCourses = this.courses.stream().map(dto -> dto.toCourse(service)).collect(Collectors.toList());
@@ -65,9 +72,11 @@ public class OfferDTO {
 
         Responsible responsible = new Responsible(responsibleName);
 
+        CareOf careOf = new CareOf(careOfName);
+
         CaelumDistrict district = CaelumDistrict.valueOf(caelumDistrict);
         CaelumInfo caelumInfo = new CaelumInfo(district);
 
-        return new Offer(customer, mappedCourses, LocalDate.now(), responsible, caelumInfo);
+        return new Offer(customer, mappedCourses, LocalDate.now(), responsible, careOf, caelumInfo);
     }
 }
