@@ -20,6 +20,8 @@ public class Course {
 	@JsonProperty("carga_horaria")
 	private Integer workload;
 
+	@JsonProperty("preRequisitos")
+	private String preRequisites;
 
     /**
      * @deprecated frameworks only
@@ -27,7 +29,7 @@ public class Course {
     @Deprecated(since = "1.0.0")
     private Course() { }
 
-    public Course(String name, String code, Integer workload , CourseSummaryItem... items) {
+    public Course(String name, String code, Integer workload , String preRequisites, CourseSummaryItem... items) {
         Assert.hasText(name, "Name required");
         Assert.hasText(code, "Code required");
         Assert.notNull(workload, "Workload required");
@@ -39,6 +41,7 @@ public class Course {
         this.code = code;
         this.workload = workload;
         this.summary = List.of(items);
+        this.preRequisites = preRequisites;
     }
 
     public String getCode() {
@@ -55,5 +58,9 @@ public class Course {
 
     public Integer getWorkload() {
         return workload;
+    }
+
+    public String getPreRequisites() {
+    	return preRequisites;
     }
 }
