@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.caelum.mog.domains.models.CaelumInfo;
-import br.com.caelum.mog.domains.models.CareOf;
+import br.com.caelum.mog.domains.models.CareOfName;
 import br.com.caelum.mog.domains.models.Course;
 import br.com.caelum.mog.domains.models.Customer;
 import br.com.caelum.mog.domains.models.Offer;
@@ -72,11 +72,11 @@ public class OfferDTO {
 
         Responsible responsible = new Responsible(responsibleName);
 
-        CareOf careOf = new CareOf(careOfName);
+        CareOfName careOfName = new CareOfName(this.careOfName);
 
         CaelumDistrict district = CaelumDistrict.valueOf(caelumDistrict);
         CaelumInfo caelumInfo = new CaelumInfo(district);
 
-        return new Offer(customer, mappedCourses, LocalDate.now(), responsible, careOf, caelumInfo);
+        return new Offer(customer, mappedCourses, LocalDate.now(), responsible, careOfName, caelumInfo);
     }
 }

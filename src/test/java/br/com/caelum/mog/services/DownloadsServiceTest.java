@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
-import java.util.Arrays.*;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.com.caelum.mog.adapters.Downloadable;
 import br.com.caelum.mog.domains.models.CaelumInfo;
-import br.com.caelum.mog.domains.models.CareOf;
+import br.com.caelum.mog.domains.models.CareOfName;
 import br.com.caelum.mog.domains.models.Course;
 import br.com.caelum.mog.domains.models.CourseSummaryItem;
 import br.com.caelum.mog.domains.models.Customer;
@@ -54,7 +53,7 @@ class DownloadsServiceTest {
 
         CaelumDistrict district = CaelumDistrict.SP;
         CaelumInfo caelumInfo = new CaelumInfo(district);
-        CareOf careOfname = new CareOf("Paulo Silveira");
+        CareOfName careOfname = new CareOfName("Paulo Silveira");
 
         Offer offer = new Offer(customer, courses, LocalDate.of(2018, Month.MARCH, 25), responsible, careOfname, caelumInfo);
 

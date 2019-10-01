@@ -16,7 +16,7 @@ public class Offer {
     private CaelumInfo caelumInfo;
     private List<Course> courses =  new ArrayList<>();
     private LocalDate date;
-    private CareOf careOfName;
+    private CareOfName careOfName;
 
 
     /**
@@ -25,7 +25,7 @@ public class Offer {
     @Deprecated(since = "1.0.0")
     private Offer() { }
 
-    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible, CareOf careOfName, CaelumInfo caelumInfo){
+    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible, CareOfName careOfName, CaelumInfo caelumInfo){
         Assert.notNull(customer, "Customer required");
         Assert.notEmpty(courses, "Courses required");
         Assert.notNull(date, "Date required");
@@ -68,7 +68,7 @@ public class Offer {
         return responsible;
     }
 
-    public CareOf getCareOfName() {
+    public CareOfName getCareOfName() {
 		return careOfName;
 	}
 }
