@@ -1,13 +1,13 @@
 package br.com.caelum.mog.domains.models;
 
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.util.Assert;
-
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.util.Assert;
 
 public class Offer {
 
@@ -16,6 +16,7 @@ public class Offer {
     private CaelumInfo caelumInfo;
     private List<Course> courses =  new ArrayList<>();
     private LocalDate date;
+    private CareOfName careOfName;
 
 
     /**
@@ -24,7 +25,7 @@ public class Offer {
     @Deprecated(since = "1.0.0")
     private Offer() { }
 
-    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible, CaelumInfo caelumInfo){
+    public Offer(Customer customer, List<Course> courses, LocalDate date, Responsible responsible, CareOfName careOfName, CaelumInfo caelumInfo){
         Assert.notNull(customer, "Customer required");
         Assert.notEmpty(courses, "Courses required");
         Assert.notNull(date, "Date required");
@@ -34,6 +35,7 @@ public class Offer {
         this.date = date;
         this.responsible = responsible;
         this.caelumInfo = caelumInfo;
+        this.careOfName = careOfName;
     }
 
     public Customer getCustomer() {
@@ -65,4 +67,8 @@ public class Offer {
     public Responsible getResponsible() {
         return responsible;
     }
+
+    public CareOfName getCareOfName() {
+		return careOfName;
+	}
 }

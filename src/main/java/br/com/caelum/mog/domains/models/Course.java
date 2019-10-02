@@ -1,6 +1,7 @@
 package br.com.caelum.mog.domains.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,6 +21,8 @@ public class Course {
 	@JsonProperty("carga_horaria")
 	private Integer workload;
 
+	@JsonProperty("requerimentos")
+	private Collection<String> prerequisites = new ArrayList<>();
 
     /**
      * @deprecated frameworks only
@@ -27,7 +30,7 @@ public class Course {
     @Deprecated(since = "1.0.0")
     private Course() { }
 
-    public Course(String name, String code, Integer workload , CourseSummaryItem... items) {
+    public Course(String name, String code, Integer workload , Collection<String> prerequisites, CourseSummaryItem... items) {
         Assert.hasText(name, "Name required");
         Assert.hasText(code, "Code required");
         Assert.notNull(workload, "Workload required");
@@ -39,6 +42,7 @@ public class Course {
         this.code = code;
         this.workload = workload;
         this.summary = List.of(items);
+        this.prerequisites = prerequisites;
     }
 
     public String getCode() {
@@ -55,5 +59,9 @@ public class Course {
 
     public Integer getWorkload() {
         return workload;
+    }
+
+    public Collection<String> getPrerequisites() {
+    	return prerequisites;
     }
 }

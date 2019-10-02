@@ -1,17 +1,17 @@
 package br.com.caelum.mog.rest;
 
-import br.com.caelum.mog.domains.dtos.CourseDTO;
-import br.com.caelum.mog.domains.models.Course;
-import br.com.caelum.mog.domains.models.CourseSummaryItem;
-import br.com.caelum.mog.domains.models.Platform;
-import br.com.caelum.mog.rest.representations.CourseRepresentation;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import br.com.caelum.mog.domains.dtos.CourseDTO;
+import br.com.caelum.mog.domains.models.Course;
+import br.com.caelum.mog.domains.models.Platform;
+import br.com.caelum.mog.rest.representations.CourseRepresentation;
 
 @Component
 public class ClassroomCoursesRestClient implements CoursesRestClient {
