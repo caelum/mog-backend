@@ -33,7 +33,7 @@ public enum CaelumDistrict {
 
         @Override
         public String getTelephone() {
-            return "(21) 2297-0033";
+            return "(11) 4118-3825";
         }
     },
 
@@ -50,7 +50,7 @@ public enum CaelumDistrict {
 
         @Override
         public String getTelephone() {
-            return "(61) 3039-4222";
+            return "(11) 4118-3825";
         }
     };
 
