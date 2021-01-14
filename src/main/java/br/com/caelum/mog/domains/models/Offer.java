@@ -1,13 +1,14 @@
 package br.com.caelum.mog.domains.models;
 
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.util.Assert;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.util.Assert;
 
 public class Offer {
 
@@ -61,8 +62,16 @@ public class Offer {
         String month = date.getMonth().getDisplayName(TextStyle.FULL, locale);
         int year = date.getYear();
 
+        String simpleDate = getSimpleDate();
+        System.out.println(simpleDate);
+
         return String.format(locale, "%s de %s de %s", day, month, year);
     }
+
+    public String getSimpleDate() {
+        return this.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
 
     public Responsible getResponsible() {
         return responsible;
