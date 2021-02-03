@@ -45,8 +45,8 @@ class DownloadsServiceTest {
         CourseSummaryItem defaultSummary = new CourseSummaryItem("Introduction", "Chapter 1", "Chapter 2");
 
         List<Course> courses = List.of(
-                new Course("Course One", "one", 10, Arrays.asList("FJ-11"), defaultSummary),
-                new Course("Course Two", "two", 20, Arrays.asList("FJ-22"), defaultSummary)
+                new Course("Course One", "one", 10, Arrays.asList("FJ-11"), null, null defaultSummary),
+                new Course("Course Two", "two", 20, Arrays.asList("FJ-22"), null, null, defaultSummary)
         );
 
         Responsible responsible = new Responsible("Bianca Cavalcante");
