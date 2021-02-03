@@ -1,5 +1,6 @@
 package br.com.caelum.mog.domains.models;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,13 +25,19 @@ public class Course {
 	@JsonProperty("requerimentos")
 	private Collection<String> prerequisites = new ArrayList<>();
 
+	@JsonProperty("allCourses")
+    private List<CourseToOffer> allCourses;
+
+	@JsonProperty("preco")
+	private BigDecimal price;
+
     /**
      * @deprecated frameworks only
      */
     @Deprecated(since = "1.0.0")
     private Course() { }
 
-    public Course(String name, String code, Integer workload , Collection<String> prerequisites, CourseSummaryItem... items) {
+    public Course(String name, String code, Integer workload , Collection<String> prerequisites, List<CourseToOffer> allCourses, BigDecimal price, CourseSummaryItem... items) {
         Assert.hasText(name, "Name required");
         Assert.hasText(code, "Code required");
         Assert.notNull(workload, "Workload required");
@@ -43,6 +50,8 @@ public class Course {
         this.workload = workload;
         this.summary = List.of(items);
         this.prerequisites = prerequisites;
+        this.allCourses = allCourses;
+        this.price = price;
     }
 
     public String getCode() {
@@ -63,5 +72,21 @@ public class Course {
 
     public Collection<String> getPrerequisites() {
     	return prerequisites;
+    }
+
+    public List<CourseToOffer> getAllCourses() {
+        return allCourses;
+    }
+
+    public void setAllCourses(List<CourseToOffer> allCourses) {
+        this.allCourses = allCourses;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
